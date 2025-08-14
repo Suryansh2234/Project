@@ -15,9 +15,6 @@ class User(db.Model):
     email = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
 
-@app.route('/')
-def home():
-    return render_template('index.html')
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
