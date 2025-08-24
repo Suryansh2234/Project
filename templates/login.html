@@ -3,243 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fit Track Pro - Member Login</title>
+    <title>Login - FitPro Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
         body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
         }
-        
-        .register-container {
-            width: 90%;
-            max-width: 600px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 40px;
-            margin: 20px 0;
+        .form-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-        
-        .logo-container {
-            text-align: center;
-            margin-bottom: 20px;
+        .form-shadow {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
-
-        .brand-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
+        .input-focus:focus {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
         }
-        
-        .brand-fit {
-            color: #764ba2;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .brand-track {
-            color: #667eea;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .brand-pro {
-            color: #4fd1c5;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            font-style: italic;
-        }
-        
-        .logo-container h1 {
-            color: #2c3e50;
-            background: linear-gradient(to right, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-size: 28px;
-            margin-top: 15px;
-        }
-        
-        .logo-container p {
-            color: #666;
-            margin-top: 5px;
-        }
-        
-        .register-form {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: 500;
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s;
-            background: rgba(255, 255, 255, 0.8);
-        }
-        
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
-        }
-        
-        .form-row {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .form-row .form-group {
-            flex: 1;
-        }
-        
-        .btn-login {
-            background: linear-gradient(to right, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            width: 100%;
-        }
-        
-        .btn-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-        
-        .forgot-password {
-            text-align: right;
-            margin-top: 8px;
-        }
-        
-        .forgot-password a {
-            color: #764ba2;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-        
-        .forgot-password a:hover {
-            color: #4fd1c5;
-            text-decoration: underline;
-        }
-            background: linear-gradient(to right, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 15px;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-        
-        .btn-register:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-        
-        .login-link {
-            text-align: center;
-            margin-top: 25px;
-            color: #666;
-        }
-        
-        .login-link a {
-            color: #764ba2;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .login-link a:hover {
-            text-decoration: underline;
-        }
-        
-        @media (max-width: 600px) {
-            .form-row {
-                flex-direction: column;
-                gap: 0;
-            }
-            
-            .register-container {
-                padding: 30px 20px;
-            }
+        .forgot-password:hover {
+            color: #8b5cf6;
         }
     </style>
 </head>
-<body>
-    <div class="register-container">
-        <div class="logo-container">
-            <div class="brand-title">
-                <span class="brand-fit">Fit</span><span class="brand-track">Track</span> <span class="brand-pro">Pro</span>
-            </div>
-            <h1>Welcome Back</h1>
-            <p>Sign in to access your fitness dashboard</p>
-        </div>
-        
-        <form method="post">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="username" id="username" placeholder="Enter your username" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password" required>
-                <div class="forgot-password">
-                    <a href="#">Forgot password?</a>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="max-w-4xl w-full">
+        <div class="bg-white rounded-2xl form-shadow overflow-hidden">
+            <div class="grid lg:grid-cols-2">
+                <!-- Left Column - Form -->
+                <div class="p-8 md:p-12">
+                    <div class="text-center mb-8">
+                        <div class="flex items-center justify-center mb-4">
+                            <span class="text-2xl font-bold text-purple-600">FitPro</span>
+                            <span class="ml-1 text-2xl font-semibold text-gray-800">Manager</span>
+                        </div>
+                        <h1 class="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
+                        <p class="text-gray-600">Sign in to access your gym management dashboard</p>
+                    </div>
+
+                    <form id="loginForm" class="space-y-6">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors"
+                                   placeholder="you@yourgym.com">
+                            <div class="text-red-500 text-sm mt-1 hidden" id="emailError"></div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <label for="password" class="block text-sm font-medium text-gray-700">Password *</label>
+                                <a href="#" class="text-sm text-gray-600 forgot-password transition-colors">Forgot password?</a>
+                            </div>
+                            <input type="password" id="password" name="password" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors"
+                                   placeholder="Enter your password">
+                            <div class="text-red-500 text-sm mt-1 hidden" id="passwordError"></div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <input type="checkbox" id="remember" name="remember" 
+                                   class="w-4 h-4 text-purple-600 border-gray-300 rounded">
+                            <label for="remember" class="ml-2 text-sm text-gray-600">
+                                Remember me on this device
+                            </label>
+                        </div>
+
+                        <button type="submit" 
+                                class="w-full bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition-colors transform hover:scale-105">
+                            Sign In
+                        </button>
+
+                        <div class="text-center">
+                            <p class="text-gray-600">
+                                Don't have an account? 
+                                <a href="register.html" class="text-purple-600 hover:text-purple-700 font-semibold">Sign Up</a>
+                            </p>
+                        </div>
+                    </form>
+
+                    <div class="mt-8">
+                        <div class="relative">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-gray-300"></div>
+                            </div>
+                            <div class="relative flex justify-center text-sm">
+                                <span class="px-2 bg-white text-gray-500">Or continue with</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3 mt-4">
+                            <button type="button" 
+                                    class="w-full inline-flex justify-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e8aab043-e661-4d1d-bcc8-e7276338b136.png" alt="Google logo" class="h-5 w-5 mr-2" onerror="this.style.display='none'"/>
+                                Google
+                            </button>
+                            <button type="button" 
+                                    class="w-full inline-flex justify-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/766200da-d42e-41b6-808d-e72e515c47f5.png" alt="Apple logo" class="h-5 w-5 mr-2" onerror="this.style.display='none'"/>
+                                Apple
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Image/Info -->
+                <div class="form-gradient hidden lg:block relative">
+                    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                    <div class="relative h-full flex items-center justify-center p-12">
+                        <div class="text-center text-white">
+                            <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-8">
+                                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8006e3c6-a2db-41bc-b134-7f7690a6f83d.png" alt="Modern gym management dashboard interface showing analytics and member statistics" class="rounded-lg mb-6 w-full" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'bg-gray-200 rounded-lg h-64 flex items-center justify-center\'><p class=\'text-gray-500\'>Dashboard Preview</p></div>'"/>
+                                <h2 class="text-2xl font-bold mb-4">Powerful Gym Management</h2>
+                                <ul class="space-y-3 text-left text-purple-100">
+                                    <li class="flex items-center">
+                                        <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 极 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        Member management and tracking
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 极 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 极.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        Automated billing and payments
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        Real-time class scheduling
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        Advanced analytics and reports
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <button type="submit" class="btn-login">Login</button>
-        </form>
-        
-        <div class="login-link">
-            Don't have an account? <a href="#">Register</a>
         </div>
     </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl p-6 max-w-md w-full form-shadow">
+            <div class="text-center mb-6">
+                <h3 class="text-xl font-bold text-gray-900">Reset Password</h3>
+                <p class="text-gray-600 mt-2">Enter your email to receive a password reset link</p>
+            </div>
+            <form id="forgotPasswordForm" class="space-y-4">
+                <div>
+                    <label for="resetEmail" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <input type="email" id="resetEmail" name="resetEmail" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors"
+                           placeholder="you@yourgym.com">
+                    <div class="text-red-500 text-sm mt-1 hidden" id="resetEmailError"></div>
+                </div>
+                <div class="flex space-x-3">
+                    <button type="button" id="cancelReset" 
+                            class="flex-1 py-3 px-4 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                        Cancel
+                    </button>
+                    <button type="submit" 
+                            class="flex-1 bg-purple-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-purple-700 transition-colors">
+                        Send Reset Link
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Login form validation
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset error messages
+            document.querySelectorAll('[id$="Error"]').forEach(el => {
+                el.classList.add('hidden');
+                el.textContent = '';
+            });
+
+            let isValid = true;
+
+            // Email validation
+            const email = document.getElementById('email').value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email) {
+                showError('emailError', 'Email is required');
+                isValid = false;
+            } else if (!emailRegex.test(email)) {
+                showError('emailError', 'Please enter a valid email address');
+                isValid = false;
+            }
+
+            // Password validation
+            const password = document.getElementById('password').value;
+            if (!password) {
+                showError('passwordError', 'Password is required');
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Simulate login process
+                const submitBtn = document.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Signing In...';
+                
+                setTimeout(() => {
+                    // Mock successful login
+                    alert('Login successful! Redirecting to dashboard...');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Sign In';
+                    this.reset();
+                }, 1500);
+            }
+        });
+
+        // Forgot password modal functionality
+        document.querySelector('.forgot-password').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('forgotPasswordModal').classList.remove('hidden');
+            document.getElementById('forgotPasswordModal').classList.add('flex');
+        });
+
+        document.getElementById('cancelReset').addEventListener('click', function() {
+            document.getElementById('forgotPasswordModal').classList.add('hidden');
+            document.getElementById('forgotPasswordModal').classList.remove('flex');
+        });
+
+        document.getElementById('forgotPasswordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('resetEmail').value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!email) {
+                showError('resetEmailError', 'Email is required');
+            } else if (!emailRegex.test(email)) {
+                showError('resetEmailError', 'Please enter a valid email address');
+            } else {
+                // Simulate password reset email sending
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+                
+                setTimeout(() => {
+                    alert('Password reset link has been sent to your email!');
+                    document.getElementById('forgotPasswordModal').classList.add('hidden');
+                    document.getElementById('forgotPasswordModal').classList.remove('flex');
+                    this.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }, 1500);
+            }
+        });
+
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.classList.remove('hidden');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('forgotPasswordModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+                this.classList.remove('flex');
+            }
+        });
+
+        // Demo credentials for testing
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pre-fill demo credentials for testing
+            if (window.location.search.includes('demo=true')) {
+                document.getElementById('email').value = 'demo@gymmanager.com';
+                document.getElementById('password').value = 'demopassword123';
+            }
+        });
+    </script>
 </body>
 </html>
-</body>
-</html>
+

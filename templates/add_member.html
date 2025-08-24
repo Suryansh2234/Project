@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Member - FitPro Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f8fafc;
+        }
+        .sidebar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        .nav-item.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+        }
+        .input-focus:focus {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+        .section-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .section-card:hover {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .animated-tab {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        .animated-tab.active {
+            border-bottom-color: #8b5cf6;
+            color: #8b5cf6;
+        }
+        .photo-upload {
+            border: 2px dashed #d1d5db;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .photo-upload:hover {
+            border-color: #8b5cf6;
+            background-color: #faf5ff;
+        }
+    </style>
+</head>
+<body class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="sidebar w-64 flex-shrink-0 p-6 hidden md:block">
+        <div class="flex items-center mb-8">
+            <span class="text-2xl font-bold">FitPro</span>
+            <span class="ml-1 text-2xl font-semibold text-white">Manager</span>
+        </div>
+        
+        <nav class="space-y-2">
+            <a href="dashboard.html" class="nav-item flex items-center p-3 text-white opacity-80 hover:opacity-100">
+                <i class="fas fa-tachometer-alt w-6"></i>
+                <span class="ml-3">Dashboard</span>
+            </a>
+            <a href="#" class="nav-item active flex items-center p-3 text-white">
+                <i class="fas fa-users w-6"></i>
+                <span class="ml-3">Members</span>
+            </a>
+            <a href="#" class="nav-item flex items-center p-3 text-white opacity-80 hover:opacity-100">
+                <i class="fas fa-calendar-alt w-6"></i>
+                <span class="ml-3">Classes</span>
+            </a>
+            <a href="#" class="nav-item flex items-center p-3 text-white opacity-80 hover:opacity-100">
+                <i class="fas fa-credit-card w-6"></i>
+                <span class="ml-3">Payments</span>
+            </a>
+            <a href="#" class="nav-item flex items-center p-3 text-white opacity-80 hover:opacity-100">
+                <i class="fas fa-chart-bar w-6"></i>
+                <span class="ml-3">Reports</span>
+            </a>
+            <a href="#" class="nav-item flex items-center p-3 text-white opacity-80 hover:opacity-100">
+                <i class="fas fa-cog w-6"></i>
+                <span class="ml-3">Settings</span>
+            </a>
+        </nav>
+
+        <div class="mt-auto pt-8 border-t border-white border-opacity-20">
+            <div class="flex items-center p-3">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1de4c740-e84f-41c3-8d75-ae91aaa3905f.png" alt="User profile picture" class="w-10 h-10 rounded-full" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center\\'><i class=\\'fas fa-user text-white\\'></i></div>'"/>
+                <div class="ml-3">
+                    <p class="text-white font-medium">John Fitness</p>
+                    <p class="text-white text-sm opacity-80">Gym Owner</p>
+                </div>
+            </div>
+            <a href="login.html" class="nav-item flex items-center p-3 text-white opacity-80 hover:opacity-100">
+                <i class="fas fa-sign-out-alt w-极"></i>
+                <span class="ml-3">Logout</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b border-gray-200">
+            <div class="flex items-center justify-between p-4">
+                <div class="flex items-center">
+                    <button class="md:hidden p-2 mr-2 text-gray-600">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div>
+                        <h1 class="text-xl font-semibold text-gray-900">Add New Member</h1>
+                        <p class="极m text-gray-600">Create a new gym membership account</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="dashboard.html" class="text-gray-600 hover:text-gray-900">
+                        <i class="fas fa-home"></i>
+                    </a>
+                    <div class="relative">
+                        <button class="p-2 text-gray-600 hover:text-gray-900">
+                            <i class="fas fa-bell"></i>
+                            <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 overflow-y-auto p-6">
+            <!-- Form Tabs -->
+            <div class="flex space-x-1 mb-6 bg-white rounded-lg p-1 shadow-sm">
+                <button class="animated-tab flex-1 py-3 px-4 text-center font-medium active" data-tab="basic">
+                    Basic Information
+                </button>
+                <button class="animated-tab flex-1 py-3 px-4 text-center font-medium" data-tab="membership">
+                    Membership Details
+                </button>
+                <button class="animated-tab flex-1 py-3 px-4 text-center font-medium" data-tab="health">
+                    Health & Goals
+                </button>
+                <button class="animated-tab flex-1 py-3 px-4 text-center font-medium" data-tab="emergency">
+                    Emergency Contact
+                </button>
+            </div>
+
+            <form id="addMemberForm" class="space-y-6">
+                <!-- Basic Information Section -->
+                <div class="section-card p-6" id="basic-section">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-6">Basic Information</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <!-- Photo Upload -->
+                        <div class="md:col-span-1">
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Profile Photo</label>
+                            <div class="photo-upload p-6 text-center cursor-pointer" id="photoUpload">
+                                <div class="w-24 h-24 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                                    <i class="fas fa-camera text-gray-400 text-2xl"></i>
+                                </div>
+                                <p class="text-sm text-gray-600">Click to upload photo</p>
+                                <p class="text-xs text-gray-500">JPG, PNG up to 2MB</p>
+                                <input type="file" id="profilePhoto" class="hidden" accept="image/*">
+                            </div>
+                        </div>
+
+                        <!-- Personal Details -->
+                        <div class="md:col-span-2">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                                    <input type="text" id="firstName" name="firstName" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors"
+                                           placeholder="Enter first name">
+                                </div>
+                                <div>
+                                    <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                                    <input type="text" id="lastName" name="lastName" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors"
+                                           placeholder="Enter last name">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                                    <input type="email" id="email" name="极mail" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors"
+                                           placeholder="member@example.com">
+                                </div>
+                                <div>
+                                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                                    <input type="tel" id="phone" name="phone" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors"
+                                           placeholder="+1 (555) 123-4567">
+                                </div>
+                                <div>
+                                    <label for="dob" class="block text-sm font-medium text-gray-700 mb-2">Date of Birth *</label>
+                                    <input type="date" id="dob" name="dob" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors">
+                                </div>
+                                <div>
+                                    <label for="gender" class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+                                    <select id="gender" name="gender" 
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors">
+                                        <option value="">Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                        <option value="prefer-not-to-say">Prefer not to say</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="address" class="block text-sm font-medium text-gray-极0 mb-2">Address *</label>
+                            <input type="text" id="address" name="address" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors"
+                                   placeholder="Street address">
+                        </div>
+                        <div>
+                            <label for="city" class="block text-sm font-medium text-gray-700 mb-2">City *</label>
+                            <input type="text" id="city" name="city" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors"
+                                   placeholder="City">
+                        </div>
+                        <div>
+                            <label for="state" class="block text-sm font-medium text-gray-700 mb-2">State *</label>
+                            <input type="text" id="state" name="state" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors"
+                                   placeholder="State">
+                        </div>
+                        <div>
+                            <label for="zipCode" class="block text-sm font-medium text-gray-700 mb-2">ZIP Code *</label>
+                            <input type="text" id="zipCode" name="zipCode" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors"
+                                   placeholder="ZIP code">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Membership Details Section -->
+                <div class="section-card p-6 hidden" id="membership-section">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-6">Membership Details</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="membershipType" class="block text-sm font-medium text-gray-700 mb-2">Membership Type *</label>
+                            <select id="membershipType" name="membershipType" required 
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors">
+                                <option value="">Select Membership Type</option>
+                                <option value="basic">Basic - $49/month</option>
+                                <option value="premium">Premium - $79/month</option>
+                                <option value="elite">Elite - $99/month</option>
+                                <option value="student">Student - $39/month</option>
+                                <option value="senior">Senior - $35/month</option>
+                                <option value="corporate">Corporate - $69/month</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="paymentFrequency" class="block text-sm font-medium text-gray-700 mb-2">Payment Frequency *</label>
+                            <select id="paymentFrequency" name="paymentFrequency" required 
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors">
+                                <option value="">Select Frequency</option>
+                                <option value="month极">Monthly</option>
+                                <option value="quarterly">Quarterly (-5%)</option>
+                                <option value="annual">Annual (-15%)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="startDate" class="block text-sm font-medium text-gray-700 mb-2">Start Date *</label>
+                            <input type="date" id="startDate" name="startDate" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors">
+                        </div>
+                        <div>
+                            <label for="paymentMethod" class="block text-sm font-medium text-gray-700 mb-2">Payment Method *</label>
+                            <select id="paymentMethod" name="paymentMethod" required 
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors">
+                                <option value="">Select Payment Method</option>
+                                <option value="credit_card">Credit Card</option>
+                                <option value="debit_card">Debit Card</option>
+                                <option value="bank_transfer">Bank Transfer</option>
+                                <option value="cash">Cash</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-gray-900 mb-3">Membership Features</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>24/7 Gym Access</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Free Fitness Assessment</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Group Classes</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Locker Access</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Health & Goals Section -->
+                <div class="section-card p-6 hidden" id="health-section">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-6">Health Information & Goals</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="height" class="block text-sm font-medium text-gray-700 mb-2">Height (cm)</label>
+                            <input type="number" id="height" name="height" 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors"
+                                   placeholder="Enter height">
+                        </div>
+                        <div>
+                            <label for="weight" class="block text-sm font-medium text-gray-700 mb-2">Weight (kg)</label>
+                            <input type="number" id="weight" name="weight" 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg input极focus transition-colors"
+                                   placeholder="Enter weight">
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-3">Fitness Goals</label>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="checkbox" name="goals" value="weight_loss" class="mr-2">
+                                <span>Weight Loss</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="checkbox" name="goals" value="muscle_gain" class="mr-2">
+                                <span>Muscle Gain</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="checkbox" name="goals" value="endurance" class="mr-2">
+                                <span>Endurance</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="checkbox" name="goals" value="flexibility" class="mr-2">
+                                <span>Flexibility</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="checkbox" name="goals" value="general_fitness" class="mr-2">
+                                <span>General Fitness</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="checkbox" name="goals" value="sport_specific" class="mr-2">
+                                <span>Sport Specific</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="medicalConditions" class="block text-sm font-medium text-gray-700 mb-2">Medical Conditions or Restrictions</label>
+                        <textarea id="medicalConditions" name="medicalConditions" rows="3"
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors"
+                                  placeholder="List any medical conditions, allergies, or restrictions we should be aware of..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Emergency Contact Section -->
+                <div class="section-card p-6 hidden" id="emergency-section">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-6">Emergency Contact Information</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="emergencyName" class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                            <input type="text" id="emergencyName" name="emergencyName" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors"
+                                   placeholder="Emergency contact's full name">
+                        </div>
+                        <div>
+                            <label for="emergencyRelationship" class="block text-sm font-medium text-gray-700 mb-2">Relationship *</label>
+                            <input type="text" id="emergencyRelationship" name="emergencyRelationship" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors"
+                                   placeholder="Relationship to member">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="emergencyPhone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                            <input type="tel" id="emergencyPhone" name="emergencyPhone" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors"
+                                   placeholder="Emergency phone number">
+                        </div>
+                        <div>
+                            <label for="emergencyEmail" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="emergencyEmail" name="emergencyEmail" 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors"
+                                   placeholder="Emergency email address">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="flex justify-between items-center">
+                    <div class="text-sm text-gray-600">
+                        <span id="form-progress">Step 1 of 4</span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button type="button" id="prev-btn" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors hidden">
+                            Previous
+                        </button>
+                        <button type="button" id="next-btn" class="px-6 py-3 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition-colors">
+                            Next
+                        </button>
+                        <button type="submit" id="submit-btn" class="px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors hidden">
+                            Create Member
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.animated-tab');
+            const sections = document.querySelectorAll('.section-card');
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const submitBtn = document.getElementById('submit-btn');
+            const progressText = document.getElementById('form-progress');
+            
+            let currentStep = 1;
+            const totalSteps = 4;
+
+            // Tab switching functionality
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetSection = tab.getAttribute('data-tab');
+                    switchSection(targetSection);
+                });
+            });
+
+            function switchSection(sectionId) {
+                // Hide all sections
+                sections.forEach(section => section.classList.add('hidden'));
+                
+                // Show target section
+                document.getElementById(`${sectionId}-section`).classList.remove('hidden');
+                
+                // Update tabs
+                tabs.forEach(tab => tab.classList.remove('active'));
+                document.querySelector(`[data-tab="${sectionId}"]`).classList.add('active');
+                
+                // Update current step
+                currentStep = ['basic', 'membership', 'health', 'emergency'].indexOf(sectionId) + 1;
+                updateNavigation();
+            }
+
+            function updateNavigation() {
+                progressText.textContent = `Step ${currentStep} of ${totalSteps}`;
+                
+                // Show/hide navigation buttons
+                if (currentStep === 1) {
+                    prevBtn.classList.add('hidden');
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                } else if (currentStep === totalSteps) {
+                    prevBtn.classList.remove('hidden');
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    prevBtn.classList.remove('hidden');
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                }
+            }
+
+            nextBtn.addEventListener('click', () => {
+                if (validateCurrentSection()) {
+                    const nextSection = ['basic', 'membership', 'health', 'emergency'][currentStep];
+                    switchSection(nextSection);
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                const prevSection = ['basic', 'membership', 'health', 'emergency'][currentStep - 2];
+                switchSection(prevSection);
+            });
+
+            function validateCurrentSection() {
+                const currentSection = document.getElementById(`${['basic', 'membership', 'health', 'emergency'][currentStep - 1]}-section`);
+                const requiredFields = currentSection.querySelectorAll('[required]');
+                let isValid = true;
+
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        field.classList.add('border-red-500');
+                        isValid = false;
+                    } else {
+                        field.classList.remove('border-red-500');
+                    }
+                });
+
+                if (!isValid) {
+                    alert('Please fill in all required fields before proceeding.');
+                }
+
+                return isValid;
+            }
+
+            // Photo upload functionality
+            const photoUpload = document.getElementById('photoUpload');
+            const profilePhoto = document.getElementById('profilePhoto');
+
+            photoUpload.addEventListener('click', () => {
+                profilePhoto.click();
+            });
+
+            profilePhoto.addEventListener('change', (e) => {
+                if (e.target.files && e.target.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        photoUpload.innerHTML = `
+                            <img src="${e.target.result}" alt="Profile preview" class="w-24 h-24 mx-auto rounded-full object-cover mb-3">
+                            <p class="text-sm text-gray-600">Click to change photo</p>
+                        `;
+                    };
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+
+            // Form submission
+            document.getElementById('addMemberForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (validateCurrentSection()) {
+                    const submitBtn = document.querySelector('button[type="submit"]');
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Creating Member...';
+                    
+                    // Simulate API call
+                    setTimeout(() => {
+                        alert('Member created successfully! Redirecting to member list...');
+                        this.reset();
+                        photoUpload.innerHTML = `
+                            <div class="w-24 h-24 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-camera text-gray-400 text-2xl"></i>
+                            </div>
+                            <p class="text-sm text-gray-600">Click to upload photo</p>
+                            <p class="text-xs text-gray-500">JPG, PNG up to 2MB</p>
+                        `;
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Create Member';
+                        switchSection('basic');
+                    }, 2000);
+                }
+            });
+
+            // Input validation
+            document.querySelectorAll('input, select, textarea').forEach(input => {
+                input.addEventListener('input', () => {
+                    if (input.hasAttribute('required') && input.value.trim()) {
+                        input.classList.remove('border-red-500');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
