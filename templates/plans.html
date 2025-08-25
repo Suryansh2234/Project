@@ -3,311 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitTrack Pro | Gym Management Plans</title>
+    <title>Plans - FitPro Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #4CAF50; /* Green */
-            --secondary-color: #FF9800; /* Orange */
-            --background-color: #f4f4f4; /* Light Gray */
-            --text-color: #333; /* Dark Gray */
-            --border-color: #ddd; /* Light Gray */
-            --success-color: #4CAF50; /* Green */
-            --danger-color: #F44336; /* Red */
-            --warning-color: #FF9800; /* Orange */
-            --card-shadow: rgba(0, 0, 0, 0.1);
-            --quote-color: #555; /* Darker Gray for Quote */
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background-color: var(--background-color);
-            color: var(--text-color);
-            background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fGdpbXxlbnwwfHx8fDE2ODI0MjY0MjM&ixlib=rb-1.2.1&q=80&w=1080');
-            background-size: cover;
-            background-position: center;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #60a5fa 0%, #6366f1 100%);
             min-height: 100vh;
-            padding: 20px;
         }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: rgba(255, 255, 255, 0.9); /* White background with transparency */
-            border-radius: 12px;
-            padding: 40px 20px;
-            box-shadow: 0 4px 20px var(--card-shadow);
+        .form-shadow {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
-
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .header h1 {
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .header p {
-            font-size: 18px;
-            margin-top: 10px;
-            color: var(--text-color);
-        }
-
-        .plans {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .plan-card {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px var(--card-shadow);
-            padding: 30px;
-            width: 300px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .plan-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px var(--card-shadow);
-        }
-
-        .plan-card h2 {
-            font-size: 26px;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        .plan-card p {
-            margin-bottom: 15px;
-            font-size: 16px;
-            color: var(--text-color);
-        }
-
-        .plan-card .price {
-            font-size: 22px;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        .members {
-            font-size: 16px;
-            margin-bottom: 15px;
-            color: var(--secondary-color);
-            font-weight: 500;
-        }
-
-        .features {
-            text-align: left;
-            margin-bottom: 15px;
-        }
-
-        .features h4 {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .features ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 10px 0;
-        }
-
-        .features li {
-            margin: 5px 0;
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .features li::before {
-            content: '✔️';
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-        }
-
-        .btn {
-            padding: 12px 20px;
-            border-radius: 4px;
-            border: none;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
-        .btn:hover {
-            background-color: darkgreen;
-            transform: scale(1.05);
-        }
-
-        /* Quote Section */
-        .quote {
-            margin: 40px 0;
-            text-align: center;
-            font-size: 20px;
-            font-style: italic;
-            color: var(--quote-color);
-            padding: 20px;
-            border-left: 4px solid var(--primary-color);
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 8px;
-            max-width: 600px;
-        }
-
-        /* Footer Section */
-        .footer {
-            margin-top: 40px;
-            text-align: center;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px var(--card-shadow);
-            width: 100%;
-            max-width: 600px;
-        }
-
-        .footer h3 {
-            margin-bottom: 15px;
-            font-size: 20px;
-            color: var(--primary-color);
-        }
-
-        .footer .footer-btn {
-            margin: 5px;
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-
-        .footer .footer-btn:hover {
-            background-color: darkorange;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .plans {
-                flex-direction: column;
-                align-items: center;
-            }
+        .input-focus:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Gym Management Plans</h1>
-            <p>Choose a plan that best fits your gym's needs.</p>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <!-- Header -->
+    <header class="w-full flex items-center justify-between px-8 py-4 bg-white shadow z-30 fixed top-0 left-0 right-0" style="height:72px;">
+        <div class="flex items-center gap-3">
+            <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Logo" class="h-10 w-10 rounded-full shadow"/>
+            <span class="text-2xl font-bold text-purple-700">FitPro Manager</span>
         </div>
-
-        <div class="plans">
-            <!-- Plan Card 1 -->
-            <div class="plan-card">
-                <h2>Basic Plan</h2>
-                <p>Perfect for small gyms looking to manage memberships and basic operations.</p>
-                <div class="price">$49/month</div>
-                <div class="members">Up to 50 Members</div>
-                <div class="features">
-                    <h4>Features:</h4>
-                    <ul>
-                        <li>Member Registration</li>
-                        <li>Basic Reporting</li>
-                        <li>Payment Tracking</li>
-                        <li>Email Support</li>
-                    </ul>
+        <div class="text-lg font-medium text-gray-700">Welcome, FitnessFreak</div>
+    </header>
+    <div class="max-w-6xl w-full relative pt-24">
+        <!-- Back to Dashboard Button -->
+        <a href="/dashboard" class="absolute top-6 right-6 z-10 inline-flex items-center px-5 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition-colors">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+            Back to Dashboard
+        </a>
+        <div class="bg-white rounded-2xl form-shadow overflow-hidden">
+            <div class="grid lg:grid-cols-3">
+                <!-- Left/Main Column - Plans Table -->
+                <div class="lg:col-span-2 p-8 md:p-12">
+                    <div class="flex items-center mb-8">
+                        <span class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-blue-100 mr-4">
+                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 1.343-3 3v1a3 3 0 003 3 3 3 0 003-3v-1c0-1.657-1.343-3-3-3zm0 0V6m0 10v2" /></svg>
+                        </span>
+                        <div>
+                            <h1 class="text-3xl font-extrabold text-gray-900 mb-1 tracking-tight">Membership Plans</h1>
+                            <p class="text-blue-700 font-medium">View and manage all available plans</p>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto rounded-lg border border-blue-100 bg-white/80 shadow-sm">
+                        <table class="min-w-full divide-y divide-blue-100">
+                            <thead class="bg-blue-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-semibold text-blue-700 uppercase tracking-wider">Plan Name</th>
+                                    <th class="px-4 py-3 text-left text-xs font-semibold text-blue-700 uppercase tracking-wider">Duration</th>
+                                    <th class="px-4 py-3 text-left text-xs font-semibold text-blue-700 uppercase tracking-wider">Price</th>
+                                    <th class="px-4 py-3 text-left text-xs font-semibold text-blue-700 uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-blue-50">
+                                {% for plan in plans %}
+                                <tr class="hover:bg-blue-50 transition-colors">
+                                    <td class="px-4 py-3 whitespace-nowrap">{{ plan.name }}</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">{{ plan.duration }}</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">₹{{ plan.price }}</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <a href="{{ url_for('update_plan', id=plan.id) }}" class="inline-block bg-yellow-400 text-white px-3 py-1 rounded-lg text-xs font-semibold mr-2 hover:bg-yellow-500 transition-colors">Update</a>
+                                        <a href="{{ url_for('delete_plan', id=plan.id) }}" class="inline-block bg-red-500 text-white px-3 py-1 rounded-lg text-xs font-semibold hover:bg-red-600 transition-colors" onclick="return confirm('Delete this plan?')">Delete</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <a href="#" class="btn">Select Plan</a>
-            </div>
-
-            <!-- Plan Card 2 -->
-            <div class="plan-card">
-                <h2>Standard Plan</h2>
-                <p>Includes advanced features for tracking members and sales.</p>
-                <div class="price">$99/month</div>
-                <div class="members">Up to 150 Members</div>
-                <div class="features">
-                    <h4>Features:</h4>
-                    <ul>
-                        <li>All Basic Plan Features</li>
-                        <li>Advanced Reporting</li>
-                        <li>Automated Billing</li>
-                        <li>SMS Notifications</li>
-                        <li>Priority Email Support</li>
-                    </ul>
+                <!-- Right Column - Plan Info/Tip -->
+                <div class="form-gradient hidden lg:block relative">
+                    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                    <div class="relative h-full flex items-center justify-center p-12">
+                        <div class="w-full max-w-xs mx-auto">
+                            <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-8 text-center shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80" alt="Plans" class="rounded-lg mb-6 w-full object-cover h-32" onerror="this.style.display='none'"/>
+                                <h2 class="text-xl font-bold text-white mb-2">Plan Tips</h2>
+                                <ul class="text-left text-blue-100 text-sm mb-4 list-disc ml-5">
+                                    <li>Offer a variety of plans to suit different needs</li>
+                                    <li>Highlight unique benefits for each plan</li>
+                                    <li>Keep pricing clear and competitive</li>
+                                </ul>
+                                <div class="mt-4">
+                                    <span class="inline-block bg-blue-700 text-white text-xs rounded-full px-3 py-1 mb-2">Did you know?</span>
+                                    <p class="text-blue-100 text-sm">Flexible plans and transparent pricing help increase member signups and retention!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <a href="#" class="btn">Select Plan</a>
             </div>
-
-            <!-- Plan Card 3 -->
-            <div class="plan-card">
-                <h2>Premium Plan</h2>
-                <p>All features included, plus priority support and custom integrations.</p>
-                <div class="price">$149/month</div>
-                <div class="members">Up to 300 Members</div>
-                <div class="features">
-                    <h4>Features:</h4>
-                    <ul>
-                        <li>All Standard Plan Features</li>
-                        <li>Custom Integrations</li>
-                        <li>Personalized Training Plans</li>
-                        <li>Dedicated Account Manager</li>
-                        <li>24/7 Support</li>
-                    </ul>
-                </div>
-                <a href="#" class="btn">Select Plan</a>
-            </div>
-
-            <!-- Plan Card 4 -->
-            <div class="plan-card">
-                <h2>Enterprise Plan</h2>
-                <p>Custom solutions for large gyms with specific needs.</p>
-                <div class="price">Contact Us</div>
-                <div class="members">Unlimited Members</div>
-                <div class="features">
-                    <h4>Features:</h4>
-                    <ul>
-                        <li>All Premium Plan Features</li>
-                        <li>Custom Development</li>
-                        <li>On-site Training</li>
-                        <li>Advanced Analytics</li>
-                        <li>Custom Pricing</li>
-                    </ul>
-                </div>
-                <a href="#" class="btn">Inquire Now</a>
-            </div>
-        </div>
-
-        <!-- Quote Section -->
-        <div class="quote">
-            "The only bad workout is the one that didn't happen."
-        </div>
-
-        <!-- Footer Section -->
-        <div class="footer">
-            <h3>Quick Links</h3>
-            <a href="#" class="footer-btn">Contact Us</a>
-            <a href="#" class="footer-btn">Terms and Conditions</a>
-            <a href="#" class="footer-btn">Gym Partners</a>
         </div>
     </div>
 </body>

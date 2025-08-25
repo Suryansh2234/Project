@@ -33,27 +33,14 @@
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <span class="text-2xl font-bold text-purple-600">FitPro</span>
-                        <span class="ml-1 text-2xl font-semibold text-gray-800">Manager</span>
-                    </div>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#features" class="text-gray-600 hover:text-purple-600 transition-colors">Features</a>
-                    <a href="#benefits" class="text-gray-600 hover:text-purple-600 transition-colors">Benefits</a>
-                    <a href="#pricing" class="text-gray-600 hover:text-purple-600 transition-colors">Pricing</a>
-                    <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors">
-                        Get Started
-                    </button>
-                </div>
-            </div>
+    <!-- Header -->
+    <header class="w-full flex items-center justify-between px-8 py-4 bg-white shadow z-30 fixed top-0 left-0 right-0" style="height:72px;">
+        <div class="flex items-center gap-3">
+            <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Logo" class="h-10 w-10 rounded-full shadow"/>
+            <span class="text-2xl font-bold text-purple-700">FitPro Manager</span>
         </div>
-    </nav>
+        <div class="text-lg font-medium text-gray-700">Welcome, FitnessFreak</div>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero-gradient pt-24 pb-20">
@@ -67,12 +54,12 @@
                         Streamline member accounts, billing, and attendance with our powerful gym management system. Focus on fitness while we handle the paperwork.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <button class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
-                            Start Free Trial
-                        </button>
-                        <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors">
-                            Watch Demo
-                        </button>
+                        <a href="/login" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
+                            Get Started
+                        </a>
+                        <a href="/register" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors">
+                            Register Here
+                        </a>
                     </div>
                 </div>
                 <div class="relative">

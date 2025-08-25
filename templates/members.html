@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members - FitPro Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .form-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .form-shadow {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .input-focus:focus {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <!-- Header -->
+    <header class="w-full flex items-center justify-between px-8 py-4 bg-white shadow z-30 fixed top-0 left-0 right-0" style="height:72px;">
+        <div class="flex items-center gap-3">
+            <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Logo" class="h-10 w-10 rounded-full shadow"/>
+            <span class="text-2xl font-bold text-purple-700">FitPro Manager</span>
+        </div>
+        <div class="text-lg font-medium text-gray-700">Welcome, FitnessFreak</div>
+    </header>
+    <div class="max-w-7xl w-full relative pt-24">
+        <!-- Back to Dashboard Button -->
+        <a href="/dashboard" class="absolute top-6 right-6 z-10 inline-flex items-center px-5 py-2 bg-purple-600 text-white font-semibold rounded-lg shadow hover:bg-purple-700 transition-colors">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+            Back to Dashboard
+        </a>
+        <div class="bg-white rounded-2xl form-shadow overflow-hidden">
+            <div class="grid lg:grid-cols-3">
+                <!-- Left/Main Column - Members Table -->
+                <div class="lg:col-span-2 p-8 md:p-12">
+                    <div class="flex items-center mb-8">
+                        <span class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-purple-100 mr-4">
+                            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m9-4V7a4 4 0 10-8 0v3m12 4v1a2 2 0 01-2 2H6a2 2 0 01-2-2v-1a6 6 0 0112 0z" /></svg>
+                        </span>
+                        <div>
+                            <h1 class="text-3xl font-extrabold text-gray-900 mb-1 tracking-tight">Members List</h1>
+                            <p class="text-purple-700 font-medium">View and manage all gym members</p>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto rounded-lg border border-purple-100 bg-white/80 shadow-sm">
+                        <table class="min-w-full divide-y divide-purple-100">
+                            <thead class="bg-purple-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-semibold text-purple-700 uppercase tracking-wider">Name</th>
+                                    <th class="px-4 py-3 text-left text-xs font-semibold text-purple-700 uppercase tracking-wider">Age</th>
+                                    <th class="px-4 py-3 text-left text-xs font-semibold text-purple-700 uppercase tracking-wider">Gender</th>
+                                    <th class="px-4 py-3 text-left text-xs font-semibold text-purple-700 uppercase tracking-wider">Contact</th>
+                                    <th class="px-4 py-3 text-left text-xs font-semibold text-purple-700 uppercase tracking-wider">Plan</th>
+                                    <th class="px-4 py-3 text-left text-xs font-semibold text-purple-700 uppercase tracking-wider">Joining Date</th>
+                                    <th class="px-4 py-3 text-left text-xs font-semibold text-purple-700 uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-purple-50">
+                                {% for member in members %}
+                                <tr class="hover:bg-purple-50 transition-colors">
+                                    <td class="px-4 py-3 whitespace-nowrap">{{ member.name }}</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">{{ member.age }}</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">{{ member.gender }}</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">{{ member.contact }}</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">{{ member.plan.name }} ({{ member.plan.duration }})</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">{{ member.joining_date.strftime('%Y-%m-%d') }}</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <a href="{{ url_for('update_member', id=member.id) }}" class="inline-block bg-yellow-400 text-white px-3 py-1 rounded-lg text-xs font-semibold mr-2 hover:bg-yellow-500 transition-colors">Update</a>
+                                        <a href="{{ url_for('delete_member', id=member.id) }}" class="inline-block bg-red-500 text-white px-3 py-1 rounded-lg text-xs font-semibold hover:bg-red-600 transition-colors" onclick="return confirm('Delete this member?')">Delete</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Right Column - Member Stats/Info -->
+                <div class="form-gradient hidden lg:block relative">
+                    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                    <div class="relative h-full flex items-center justify-center p-12">
+                        <div class="w-full max-w-xs mx-auto">
+                            <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-8 text-center shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Members" class="rounded-lg mb-6 w-full object-cover h-32" onerror="this.style.display='none'"/>
+                                <h2 class="text-xl font-bold text-white mb-2">Member Stats</h2>
+                                <div class="flex justify-between items-center mb-4">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-purple-100">{{ members|length }}</div>
+                                        <div class="text-xs text-purple-50">Total Members</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-purple-100">{% set male = members|selectattr('gender', 'equalto', 'Male')|list|length %}{{ male }}</div>
+                                        <div class="text-xs text-purple-50">Male</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-purple-100">{% set female = members|selectattr('gender', 'equalto', 'Female')|list|length %}{{ female }}</div>
+                                        <div class="text-xs text-purple-50">Female</div>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="inline-block bg-purple-700 text-white text-xs rounded-full px-3 py-1 mb-2">Did you know?</span>
+                                    <p class="text-purple-100 text-sm">Members who attend regularly are 3x more likely to renew their plans. Keep them engaged!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

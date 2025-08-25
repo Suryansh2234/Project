@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Plan - FitPro Manager</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #1f2937;
+      background: linear-gradient(135deg, #60a5fa 0%, #6366f1 100%);
+      min-height: 100vh;
+    }
+    .form-shadow {
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    .input-focus:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+  <!-- Header -->
+  <header class="w-full flex items-center justify-between px-8 py-4 bg-white shadow z-30 fixed top-0 left-0 right-0" style="height:72px;">
+    <div class="flex items-center gap-3">
+      <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Logo" class="h-10 w-10 rounded-full shadow"/>
+      <span class="text-2xl font-bold text-purple-700">FitPro Manager</span>
+    </div>
+    <div class="text-lg font-medium text-gray-700">Welcome, FitnessFreak</div>
+  </header>
+  <div class="max-w-6xl w-full relative pt-24">
+    <!-- Back to Dashboard Button -->
+    <a href="/dashboard" class="absolute top-6 right-6 z-10 inline-flex items-center px-5 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition-colors">
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+      Back to Dashboard
+    </a>
+    <div class="bg-white rounded-2xl form-shadow overflow-hidden">
+      <div class="grid lg:grid-cols-2">
+        <!-- Left Column - Form -->
+        <div class="p-8 md:p-12">
+          <div class="text-center mb-8">
+            <div class="flex items-center justify-center mb-4">
+              <span class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-blue-100 mb-2">
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 1.343-3 3v1a3 3 0 003 3 3 3 0 003-3v-1c0-1.657-1.343-3-3-3zm0 0V6m0 10v2" /></svg>
+              </span>
+            </div>
+            <h1 class="text-3xl font-extrabold text-gray-900 mb-2 tracking-tight">Update Membership Plan</h1>
+            <p class="text-blue-700 font-medium">Edit the plan details and save changes</p>
+          </div>
+          <form method="POST" class="space-y-6 border border-blue-200 rounded-xl p-6 shadow-sm bg-white/80">
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Plan Name *</label>
+              <input type="text" id="name" name="name" value="{{ plan.name }}" required class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors" placeholder="e.g. Gold, Silver, Platinum">
+            </div>
+            <div>
+              <label for="duration" class="block text-sm font-medium text-gray-700 mb-2">Duration *</label>
+              <input type="text" id="duration" name="duration" value="{{ plan.duration }}" required class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors" placeholder="e.g. 1 Month, 3 Months">
+            </div>
+            <div>
+              <label for="price" class="block text-sm font-medium text-gray-700 mb-2">Price *</label>
+              <input type="number" id="price" name="price" value="{{ plan.price }}" step="0.01" required class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors" placeholder="Enter price in ₹">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors transform hover:scale-105">Update Plan</button>
+          </form>
+        </div>
+        <!-- Right Column - Plan Info/Tip -->
+        <div class="form-gradient hidden lg:block relative">
+          <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+          <div class="relative h-full flex items-center justify-center p-12">
+            <div class="w-full max-w-xs mx-auto">
+              <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-8 text-center shadow-lg">
+                <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80" alt="Plans" class="rounded-lg mb-6 w-full object-cover h-32" onerror="this.style.display='none'"/>
+                <h2 class="text-xl font-bold text-white mb-2">Plan Tips</h2>
+                <ul class="text-left text-blue-100 text-sm mb-4 list-disc ml-5">
+                  <li>Keep plan names clear and attractive</li>
+                  <li>Update pricing to stay competitive</li>
+                  <li>Highlight new features or benefits</li>
+                </ul>
+                <div class="mt-4">
+                  <span class="inline-block bg-blue-700 text-white text-xs rounded-full px-3 py-1 mb-2">Did you know?</span>
+                  <p class="text-blue-100 text-sm">Regularly updating your plans can help boost member engagement and retention!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
